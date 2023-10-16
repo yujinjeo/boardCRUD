@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>작성 확인</title>
+</head>
+<body>
+<h1>다음과 같은 내용이 작성되었습니다</h1>
+<ul>
+    <li>제목 : <span th:text="${report.title}"></span></li>
+    <li>내용</li>
+    <li><span th:text="${report.content}"></span></li>
+</ul>
+<a href="/write">글쓰기</a>
+</body>
+</html>
