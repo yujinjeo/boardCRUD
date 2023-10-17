@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
@@ -39,6 +40,17 @@ public class Controller1 {
 
         return "result";
     }
+
+    @GetMapping(value = "/main")
+    public String listAll(Model model){
+        System.out.println("Controller1.listAll");
+        List<Report> reports = repository.findAll();
+        model.addAttribute("reports",reports);
+
+        return "main";
+    }
+
+    
 
 
 }
