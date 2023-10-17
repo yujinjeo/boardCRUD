@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Controller
@@ -50,7 +51,23 @@ public class Controller1 {
         return "main";
     }
 
-    
+    @GetMapping(value = "/findReportById/{id}")
+    public String findReportById(@PathVariable("id") String id,
+                                 Model model){
+        System.out.println("Controller1.findReportById");
+
+        Optional<Report> byId = repository.findById(Long.valueOf(id).longValue());
+        if(byId.isPresent()){
+            Report myReport=byId.get();
+            model.addAttribute("my_report",myReport);
+            return "show_each";
+        }else{
+            return "error";
+        }
+
+
+
+    }
 
 
 }

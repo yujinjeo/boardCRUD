@@ -13,7 +13,7 @@
             <th>내용</th>
         </tr>
         <tr th:each="report: ${reports}">
-            <td th:text="${report.id}"/>
+            <a th:text="${report.id}" th:href="@{/findReportById/{id} (id=${report.id})}"/>
             <td th:text="${report.title}"/>
             <td th:text="${report.content}"/>
         </tr>

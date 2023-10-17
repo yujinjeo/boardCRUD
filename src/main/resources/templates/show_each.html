@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글</title>
+</head>
+<body>
+
+<div>
+    <li>제목 : <span th:text="${my_report.title}"></span></li>
+    <li>내용</li>
+    <li><span th:text="${my_report.content}"></span></li>
+</div>
+
+<button><a href="/">홈으로 가기</a></button>
+</body>
+</html>
