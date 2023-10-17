@@ -12,6 +12,8 @@
     <li><span th:text="${my_report.content}"></span></li>
 </div>
 
+<button th:onclick="|location.href='@{../delete/{id} (id=${my_report.id})}'|">글 삭제</button>
 <button><a href="/">홈으로 가기</a></button>
+
 </body>
 </html>

@@ -64,10 +64,17 @@ public class Controller1 {
         }else{
             return "error";
         }
+    }
 
-
+    @GetMapping(value="/delete/{id}")
+    public String deleteById(@PathVariable("id") String id, Model model){
+        System.out.println("Controller1.deleteById");
+        Long idd=Long.valueOf(id).longValue();
+        repository.deleteById(idd);
+        return "redirect:../main";
 
     }
+
 
 
 }
