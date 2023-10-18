@@ -7,12 +7,16 @@
 <body>
 
 <div>
-    <li>제목 : <span th:text="${my_report.title}"></span></li>
+    제목 : <span th:text="${my_report.title}"></span>
     <li>내용</li>
-    <li><span th:text="${my_report.content}"></span></li>
+    <span th:text="${my_report.content}"></span>
 </div>
 
-<button th:onclick="|location.href='@{../delete/{id} (id=${my_report.id})}'|">글 삭제</button>
+<div>
+    <button th:onclick="|location.href='@{../delete/{id} (id=${my_report.id})}'|">글 삭제</button>
+    <button th:onclick="|location.href='@{../modify(id=${my_report.id})}'|">수정하기</button>
+</div>
+
 <button><a href="/">홈으로 가기</a></button>
 
 </body>

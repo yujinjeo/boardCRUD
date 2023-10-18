@@ -22,22 +22,59 @@ public class Controller1 {
     private ReportRepository repository;
 
     @GetMapping(value = "/write")
-    public String write(){
+    public String write(Model model){
         System.out.println("Controller1.write");
+        Long id=-1l;
+        String title="제목을 입력하세요";
+        String content="내용을 입력하세요";
+        Report initReport=new Report(id, title, content);
+        model.addAttribute("report",initReport);
+
         return "write";
     }
 
+    @GetMapping(value = "/modify")
+    public String modify(@RequestParam("id") String id,
+                         Model model){
+        System.out.println("Controller1.modify");
+        Optional<Report> byId = repository.findById(Long.valueOf(id).longValue());
+        if(byId.isPresent()){
+            Report report = byId.get();
+            model.addAttribute("report",report);
+
+            return "write";
+        }else{
+            return "error";
+        }
+
+    }
+
     @PostMapping(value="/confirm")
-    public String result(@RequestParam("title") String title,
+    public String result(@RequestParam("id") String id,
+                         @RequestParam("title") String title,
                          @RequestParam("content")String content,
                          Model model){
         System.out.println("Controller1.result");
+        long idd = Long.valueOf(id).longValue();
+        Optional<Report> byId = repository.findById(Long.valueOf(id).longValue());
 
-        Report report=new Report(title, content);
-        System.out.println("title = " + title);
-        System.out.println("content = " + content);
-        repository.save(report);
-        model.addAttribute("report", report);
+        if(idd!=-1l){
+            if(byId.isPresent()){
+                Report report=byId.get();
+                report.changes(title,content);
+                repository.save(report);
+
+                model.addAttribute("report", report);
+            }else{
+                return "error";
+            }
+        }else{
+            Report report=new Report(title, content);
+            System.out.println("title = " + title);
+            System.out.println("content = " + content);
+            repository.save(report);
+            model.addAttribute("report", report);
+        }
 
         return "result";
     }

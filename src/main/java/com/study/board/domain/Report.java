@@ -28,4 +28,15 @@ public class Report {
         this.title = title;
         this.content = content;
     }
+
+    public Report(long id, String title, String content){
+        this.id=id;
+        this.title=title;
+        this.content=content;
+    }
+
+    public void changes(String title, String content){
+        this.content=content;
+        this.title=title;
+    }
 }
